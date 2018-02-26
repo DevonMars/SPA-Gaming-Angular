@@ -1,3 +1,12 @@
-<p>
-  game-item works!
-</p>
+<a
+  [routerLink]="game._id"
+  routerLinkActive="active">
+  <div class="card-group">
+    <div class="card">
+      <img class="card-img-top" src="../../../../assets/images/Game.jpg" alt="Card image cap">
+      <div class="card-block">
+        <h4 class="card-title">{{game?.title}}</h4>
+      </div>
+    </div>
+  </div>
+</a>

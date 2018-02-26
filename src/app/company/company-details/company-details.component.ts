@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {Company} from '../../models/company.model';
 import {CompanyService} from '../../services/company.service';
 import {ActivatedRoute, Params, Router} from '@angular/router';
+import {GameService} from "../../services/game.service";
+import {Game} from "../../models/game.model";
 
 @Component({
   selector: 'app-company-details',
@@ -11,8 +13,9 @@ import {ActivatedRoute, Params, Router} from '@angular/router';
 export class CompanyDetailsComponent implements OnInit {
   company: Company;
   id: string;
+  private games: Game[];
 
-  constructor(private companyService: CompanyService, private route: ActivatedRoute, private router: Router){}
+  constructor(private companyService: CompanyService, private gameService: GameService, private route: ActivatedRoute, private router: Router){}
 
   ngOnInit() {
     this.route.params
@@ -22,16 +25,24 @@ export class CompanyDetailsComponent implements OnInit {
           this.company = company;
         })
         console.log(this.id);
-      })
+      });
+
+    this.gameService.getGames().then((games) => {
+      console.log(games);
+      this.games = games;
+    })
   }
+
 
   onEdit() {
     this.router.navigate(['edit'], {relativeTo: this.route});
   }
 
-  onDelete(){
+  onDelete() {
     this.companyService.deleteCompany(this.company);
     this.router.navigate(['companies']);
   }
+
+
 
 }

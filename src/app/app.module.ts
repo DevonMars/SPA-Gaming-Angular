@@ -17,6 +17,7 @@ import { GameListComponent } from './game/game-list/game-list.component';
 import { GameItemComponent } from './game/game-list/game-item/game-item.component';
 import { GameEditComponent } from './game/game-edit/game-edit.component';
 import { GameDetailsComponent } from './game/game-details/game-details.component';
+import {GameService} from "./services/game.service";
 
 @NgModule({
   declarations: [
@@ -40,7 +41,7 @@ import { GameDetailsComponent } from './game/game-details/game-details.component
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [CompanyService],
+  providers: [CompanyService, GameService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

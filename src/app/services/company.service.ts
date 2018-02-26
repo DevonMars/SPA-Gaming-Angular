@@ -1,4 +1,4 @@
-import  {Injectable} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {environment} from '../../environments/environment';
 import 'rxjs/Rx';
 import {Company} from '../models/company.model';
@@ -6,6 +6,8 @@ import {Http, Headers} from '@angular/http';
 
 import {Subject} from 'rxjs/Subject';
 import {HttpClient} from '@angular/common/http';
+import {Game} from "../models/game.model";
+import {Observable} from 'rxjs/Rx';
 
 @Injectable()
 export class CompanyService {
@@ -21,7 +23,7 @@ export class CompanyService {
 
   constructor(private http: Http) {}
 
-  getCompanies(): Promise<Company[]>{
+  getCompanies(): Promise<Company[]> {
     return this.http.get(this.serverUrl, {headers: this.headers})
       .toPromise()
       .then(response => {
@@ -32,6 +34,9 @@ export class CompanyService {
         return this.handleError(error);
       });
   }
+
+
+
 
   getCompany(id: string): Promise<Company> {
     return this.http.get(this.serverUrl + '/' + id, { headers: this.headers}).toPromise()
@@ -67,11 +72,15 @@ export class CompanyService {
       name: newCompany.name,
       description: newCompany.description,
       total_employees: newCompany.total_employees,
-      founders: newCompany.founder,
+      founder: newCompany.founder,
       country: newCompany.country,
       headers: this.headers})
       .toPromise()
       .then(response => {
+        this.getCompanies().then(companies => {
+          this.companies = companies;
+          this.companyChanged.next(this.companies.slice());
+        });
         return response.json() as Company;
       })
       .catch(error => {

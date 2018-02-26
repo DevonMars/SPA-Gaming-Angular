@@ -1,3 +1,10 @@
-<p>
-  game-list works!
-</p>
+<div class="row">
+  <button class="btn btn-success" (click)="onAddGame()">Add Game</button>
+  <div class="col-xs-12">
+    <h3>Games</h3>
+    <app-game-item
+      *ngFor="let gameZ of games; let i = index"
+      [game]="gameZ"
+      [index]="i"></app-game-item>
+  </div>
+</div>

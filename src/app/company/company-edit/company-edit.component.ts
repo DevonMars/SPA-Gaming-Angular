@@ -31,7 +31,7 @@ export class CompanyEditComponent implements OnInit {
       company._id = this.id;
       if (this.editingMode) {
         this.companyService.updateCompany(this.companyForm.value);
-      }else {
+      } else {
         this.companyService.addCompany(this.companyForm.value);
       }
       this.onCancel();
@@ -43,7 +43,7 @@ export class CompanyEditComponent implements OnInit {
 
     private startForm() {
         let companyName = '';
-        let companyDescrip ='';
+        let companyDescrip = '';
         let companyFounder = '';
         let companyCountry = '';
         let companyTotal = 0;
@@ -57,7 +57,7 @@ export class CompanyEditComponent implements OnInit {
       });
 
       if (this.editingMode) {
-        this.companyService.getCompany(this.id).then((newCompany:Company) => {
+        this.companyService.getCompany(this.id).then((newCompany: Company) => {
           companyName = newCompany.name;
           companyDescrip = newCompany.description;
           companyFounder = newCompany.founder;
