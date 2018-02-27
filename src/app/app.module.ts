@@ -18,6 +18,7 @@ import { GameItemComponent } from './game/game-list/game-item/game-item.componen
 import { GameEditComponent } from './game/game-edit/game-edit.component';
 import { GameDetailsComponent } from './game/game-details/game-details.component';
 import {GameService} from "./services/game.service";
+import { CompanyAddGameComponent } from './company/company-add-game/company-add-game.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import {GameService} from "./services/game.service";
     GameListComponent,
     GameItemComponent,
     GameEditComponent,
-    GameDetailsComponent
+    GameDetailsComponent,
+    CompanyAddGameComponent
   ],
   imports: [
     BrowserModule,

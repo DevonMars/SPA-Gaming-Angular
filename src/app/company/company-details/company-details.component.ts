@@ -43,6 +43,11 @@ export class CompanyDetailsComponent implements OnInit {
     this.router.navigate(['companies']);
   }
 
+  onAddGame(){
+
+  }
+
+
 
 
 }

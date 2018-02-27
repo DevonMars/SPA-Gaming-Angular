@@ -36,12 +36,15 @@ export class CompanyService {
   }
 
 
-
-
   getCompany(id: string): Promise<Company> {
     return this.http.get(this.serverUrl + '/' + id, { headers: this.headers}).toPromise()
       .then((response) => response.json())
       .catch(err => console.log(err));
+  }
+
+
+  addGametoCompany(companyId: string): Observable<any> {
+    return this.http.post(`${environment.serverUrl}/companies/${companyId}/addGame`, {companyId: companyId});
   }
 
   addCompany(company: Company): Promise<Company> {

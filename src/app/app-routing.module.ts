@@ -8,6 +8,7 @@ import {GameComponent} from "./game/game.component";
 import {GameListComponent} from "./game/game-list/game-list.component";
 import {GameEditComponent} from "./game/game-edit/game-edit.component";
 import {GameDetailsComponent} from "./game/game-details/game-details.component";
+import {CompanyAddGameComponent} from './company/company-add-game/company-add-game.component';
 
 const appRoutes: Routes = [
   {path: '', redirectTo: '/companies', pathMatch: 'full'},
@@ -15,7 +16,8 @@ const appRoutes: Routes = [
       {path: '', component: CompanyListComponent},
       {path: 'create', component: CompanyEditComponent},
       {path: ':id', component: CompanyDetailsComponent},
-      {path: ':id/edit', component: CompanyEditComponent}
+      {path: ':id/edit', component: CompanyEditComponent},
+      {path: ':id/addGame', component: CompanyAddGameComponent}
     ]},
   {
     path: 'games', component: GameComponent, children: [
