@@ -19,6 +19,13 @@ import { GameEditComponent } from './game/game-edit/game-edit.component';
 import { GameDetailsComponent } from './game/game-details/game-details.component';
 import {GameService} from "./services/game.service";
 import { CompanyAddGameComponent } from './company/company-add-game/company-add-game.component';
+import {SelectModule} from "ng-select";
+import {CharacterService} from "./services/character.service";
+import { CharacterComponent } from './character/character.component';
+import { CharacterListComponent } from './character/character-list/character-list.component';
+import { CharacterDetailsComponent } from './character/character-details/character-details.component';
+import { CharacterEditComponent } from './character/character-edit/character-edit.component';
+import { CharacterItemComponent } from './character/character-list/character-item/character-item.component';
 
 @NgModule({
   declarations: [
@@ -34,16 +41,22 @@ import { CompanyAddGameComponent } from './company/company-add-game/company-add-
     GameItemComponent,
     GameEditComponent,
     GameDetailsComponent,
-    CompanyAddGameComponent
+    CompanyAddGameComponent,
+    CharacterComponent,
+    CharacterListComponent,
+    CharacterDetailsComponent,
+    CharacterEditComponent,
+    CharacterItemComponent
   ],
   imports: [
     BrowserModule,
     HttpModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SelectModule
   ],
-  providers: [CompanyService, GameService],
+  providers: [CompanyService, GameService,CharacterService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

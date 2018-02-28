@@ -14,6 +14,7 @@ export class CompanyService {
   private headers = new Headers({'Content-Type': 'application/json'});
   private serverUrl = environment.serverUrl + 'companies';
   private companies: Company[] = [];
+  private company: Company;
   companyChanged = new Subject<Company[]>();
 
   private handleError(error: any): Promise<any> {
@@ -44,8 +45,10 @@ export class CompanyService {
 
 
   addGametoCompany(companyId: string): Observable<any> {
-    return this.http.post(`${environment.serverUrl}/companies/${companyId}/addGame`, {companyId: companyId});
+    return this.http.put(`${environment.serverUrl}/companies/${companyId}/addGame`, {companyId: companyId});
   }
+
+
 
   addCompany(company: Company): Promise<Company> {
     this.companies.push(company);

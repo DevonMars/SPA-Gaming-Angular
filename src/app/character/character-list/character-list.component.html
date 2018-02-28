@@ -1,0 +1,9 @@
+<div class="row">
+  <div class="col-xs-12">
+    <h3>Characters</h3>
+    <app-character-item
+      *ngFor="let charZ of characters; let i = index"
+      [character]="charZ"
+      [index]="i"></app-character-item>
+  </div>
+</div>

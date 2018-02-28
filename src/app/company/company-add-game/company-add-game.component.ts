@@ -4,6 +4,7 @@ import {CompanyService} from '../../services/company.service';
 import {GameService} from '../../services/game.service';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {Game} from "../../models/game.model";
 
 @Component({
   selector: 'app-company-add-game',
@@ -14,6 +15,11 @@ export class CompanyAddGameComponent implements OnInit {
   private id: string;
   company: Company;
   companyForm: FormGroup;
+  private games: Game[];
+  newGameid: string;
+  selected = null;
+
+  selectedValue = null;
 
 
   constructor(private companyService: CompanyService,
@@ -24,20 +30,34 @@ export class CompanyAddGameComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe((params: Params) => {
       this.id = params['id'];
+      this.gameService.getGames().then((data) => {
+        this.games = data as Game []
+      });
       this.startForm();
     });
+    console.log(this.companyForm.value)
+
+  }
+
+  // onSelectedGame(gamesId){
+  //   this.company = this.gameService.getGames().filter((games) => games._id == gameid)
+  // }
+
+  selectedGame(id: string) {
+    return this.newGameid == id;
   }
 
   onSubmit() {
-    const company = this.companyForm.value;
-    company._id = this.id;
-    this.companyService.addCompany(this.companyForm.value);
+    this.companyForm.value.games = this.games;
+    console.log(this.companyForm.value);
+    if (this.newGameid) {
+      this.companyForm.value.gamesId = this.newGameid;
+    }
+
+    this.companyService.addGametoCompany(this.companyForm.value);
+
   }
 
-
-  getGames(){
-    return this.gameService.getGames()
-  }
 
 
   private startForm() {

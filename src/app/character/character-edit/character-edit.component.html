@@ -1,0 +1,56 @@
+<div class="form-row">
+  <div class="col-xs-12">
+    <form [formGroup]="characterForm" (ngSubmit)="onSubmit()" >
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="name">Gender</label>
+            <input
+              type="text"
+              id="name"
+              formControlName="name"
+              class="form-control">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="gender">Gender</label>
+            <input
+              type="text"
+              id="gender"
+              class="form-control"
+              formControlName="gender">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="age">Age</label>
+            <input
+              type="number"
+              min="1"
+              id="age"
+              class="form-control"
+              formControlName="age">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <button
+            type="submit"
+            class="btn btn-success">Save</button>
+          <button type="button" class="btn btn-danger" (click)="onCancel()">Cancel</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+
+
+

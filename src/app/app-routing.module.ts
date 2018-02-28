@@ -9,6 +9,10 @@ import {GameListComponent} from "./game/game-list/game-list.component";
 import {GameEditComponent} from "./game/game-edit/game-edit.component";
 import {GameDetailsComponent} from "./game/game-details/game-details.component";
 import {CompanyAddGameComponent} from './company/company-add-game/company-add-game.component';
+import {CharacterComponent} from "./character/character.component";
+import {CharacterListComponent} from "./character/character-list/character-list.component";
+import {CharacterEditComponent} from "./character/character-edit/character-edit.component";
+import {CharacterDetailsComponent} from "./character/character-details/character-details.component";
 
 const appRoutes: Routes = [
   {path: '', redirectTo: '/companies', pathMatch: 'full'},
@@ -25,6 +29,13 @@ const appRoutes: Routes = [
     {path: 'create', component: GameEditComponent},
     {path: ':id', component: GameDetailsComponent},
     {path: ':id/edit', component: GameEditComponent}
+    ]},
+  {
+    path: 'characters', component: CharacterComponent, children: [
+    {path: '', component: CharacterListComponent},
+    {path: 'create', component: CharacterEditComponent},
+    {path: ':id', component: CharacterDetailsComponent},
+    {path: ':id/edit', component: CharacterEditComponent}
   ]}
 ];
 
