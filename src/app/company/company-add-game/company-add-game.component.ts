@@ -17,7 +17,6 @@ export class CompanyAddGameComponent implements OnInit {
   companyForm: FormGroup;
   private games: Game[];
   newGameid: string;
-  selected = null;
 
   selectedValue = null;
 
@@ -30,6 +29,7 @@ export class CompanyAddGameComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe((params: Params) => {
       this.id = params['id'];
+      this.companyService.getCompany(this.id);
       this.gameService.getGames().then((data) => {
         this.games = data as Game []
       });

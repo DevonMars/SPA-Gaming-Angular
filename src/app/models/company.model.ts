@@ -7,15 +7,15 @@ export class Company {
   public founder: string;
   public country: string;
   public total_employees: number;
-  gamesId: string;
+  public games: Game[];
 
-  constructor(name: string, description: string, founder: string, country: string, total_employees: number, gamesId: string, id?: string) {
+  constructor(name: string, description: string, founder: string, country: string, total_employees: number, games: Game[], id?: string) {
     this._id = id || " ";
     this.name = name;
     this.description = description;
     this.founder = founder;
     this.country = country;
     this.total_employees = total_employees;
-    this.gamesId = gamesId;
+    this.games = games;
   }
 }

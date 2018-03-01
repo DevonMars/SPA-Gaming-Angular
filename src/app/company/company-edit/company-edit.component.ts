@@ -3,6 +3,9 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {CompanyService} from '../../services/company.service';
 import {Company} from '../../models/company.model';
+import {Subscription} from "rxjs/Subscription";
+import {GameService} from "../../services/game.service";
+import {Game} from "../../models/game.model";
 
 @Component({
   selector: 'app-company-edit',
@@ -10,13 +13,15 @@ import {Company} from '../../models/company.model';
   styleUrls: ['./company-edit.component.css']
 })
 export class CompanyEditComponent implements OnInit {
-  private editingMode = false;
+  editingMode = false;
   id: string;
   companyForm: FormGroup;
+  gameSubscription : Subscription;
+  games = [];
 
 
   constructor(private route: ActivatedRoute, private router: Router,
-              private companyService: CompanyService) { }
+              private companyService: CompanyService, gameService: GameService) { }
 
   ngOnInit() {
     this.route.params.subscribe((params: Params) => {

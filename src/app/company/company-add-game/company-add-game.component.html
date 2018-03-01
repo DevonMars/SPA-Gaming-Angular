@@ -6,7 +6,7 @@
         <div class="form-group">
           <label for="games">Games</label>
           <select id="games" formControlName="games">
-            <option *ngFor="let game of games" [ngValue]="game">{{game.title}}</option>
+            <option *ngFor="let game of games" [value]="game">{{game.title}}</option>
           </select>
         </div>
       </div>

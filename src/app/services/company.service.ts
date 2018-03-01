@@ -45,7 +45,7 @@ export class CompanyService {
 
 
   addGametoCompany(companyId: string): Observable<any> {
-    return this.http.put(`${environment.serverUrl}/companies/${companyId}/addGame`, {companyId: companyId});
+    return this.http.post(`${environment.serverUrl}/companies/${companyId}/addGame`, {companyId: companyId});
   }
 
 
@@ -105,5 +105,49 @@ export class CompanyService {
         return this.handleError(error);
       });
   }
+
+  // companiesChanged = new Subject<Company[]>();
+  // companyChanged = new Subject<Company>();
+  //
+  // private companies: Company[] = [];
+  // private company: Company;
+  //
+  // constructor() {
+  // }
+  //
+  //
+  // getCompany(id: string) {
+  //   const index = this.companies.findIndex(x => x._id == id);
+  //   return this.companies[index];
+  // }
+  //
+  // setCompany(company: Company) {
+  //   this.company = this.company;
+  //   this.companyChanged.next(this.company);
+  // }
+  //
+  // setCompanies(companies: Company[]) {
+  //   this.companies = companies;
+  //   this.companiesChanged.next(this.companies.slice());
+  // }
+  //
+  // addCompany(company: Company) {
+  //   this.companies.push(company);
+  //   this.companiesChanged.next(this.companies.slice());
+  // }
+  //
+  //
+  // updateCompany(newCompany: Company) {
+  //   const index = this.companies.findIndex(x => x._id == newCompany._id);
+  //   this.companies[index] = newCompany;
+  //   this.companiesChanged.next(this.companies.slice());
+  // }
+  //
+  // deleteCompany(id: string) {
+  //   const index = this.companies.findIndex(x => x._id == id);
+  //   this.companies.splice(index, 1);
+  //   this.companiesChanged.next(this.companies.slice());
+  // }
+
 
 }
