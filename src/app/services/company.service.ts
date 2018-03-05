@@ -44,9 +44,7 @@ export class CompanyService {
   }
 
 
-  addGametoCompany(companyId: string): Observable<any> {
-    return this.http.post(`${environment.serverUrl}/companies/${companyId}/addGame`, {companyId: companyId});
-  }
+
 
 
 
@@ -58,6 +56,7 @@ export class CompanyService {
       total_employees: company.total_employees,
       founder: company.founder,
       country: company.country,
+      games: company.games,
       headers: this.headers})
       .toPromise()
       .then(response => {

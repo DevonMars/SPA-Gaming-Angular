@@ -1,5 +1,9 @@
 <p>{{company?.name}}</p>
 <p>{{company?.founder}}</p>
+<p>{{company?.games}}</p>
+
+
+<a [routerLink]="['/games', getOwnedGame().id]">{{ getOwnedGame().title}}</a>
 
 
 <button class="btn btn-primary" (click)="onEdit()">Alter Details</button>

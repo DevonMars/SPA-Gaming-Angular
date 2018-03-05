@@ -13,7 +13,6 @@ import {Game} from "../../models/game.model";
 export class CompanyDetailsComponent implements OnInit {
   company: Company;
   id: string;
-  private games: Game[];
 
   constructor(private companyService: CompanyService, private gameService: GameService, private route: ActivatedRoute, private router: Router){}
 
@@ -26,12 +25,16 @@ export class CompanyDetailsComponent implements OnInit {
         })
         console.log(this.id);
       });
-
-    this.gameService.getGames().then((games) => {
-      console.log(games);
-      this.games = games;
-    })
   }
+
+  getCompany() {
+    return this.company;
+  }
+
+  getOwnedGame(): Game {
+    return this.gameService.getGame(this.company.games);
+  }
+
 
 
   onEdit() {
@@ -44,9 +47,8 @@ export class CompanyDetailsComponent implements OnInit {
   }
 
   onAddGame(){
-
+    this.router.navigate(['../../games/create'])
   }
-
 
 
 

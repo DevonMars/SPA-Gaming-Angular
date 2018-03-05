@@ -18,7 +18,6 @@ export class CompanyAddGameComponent implements OnInit {
   private games: Game[];
   newGameid: string;
 
-  selectedValue = null;
 
 
   constructor(private companyService: CompanyService,
@@ -54,7 +53,6 @@ export class CompanyAddGameComponent implements OnInit {
       this.companyForm.value.gamesId = this.newGameid;
     }
 
-    this.companyService.addGametoCompany(this.companyForm.value);
 
   }
 

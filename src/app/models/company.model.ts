@@ -7,9 +7,9 @@ export class Company {
   public founder: string;
   public country: string;
   public total_employees: number;
-  public games: Game[];
+  public games: string;
 
-  constructor(name: string, description: string, founder: string, country: string, total_employees: number, games: Game[], id?: string) {
+  constructor(name: string, description: string, founder: string, country: string, total_employees: number, games: string, id?: string) {
     this._id = id || " ";
     this.name = name;
     this.description = description;
