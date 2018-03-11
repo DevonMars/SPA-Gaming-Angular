@@ -8,7 +8,6 @@ import {GameComponent} from "./game/game.component";
 import {GameListComponent} from "./game/game-list/game-list.component";
 import {GameEditComponent} from "./game/game-edit/game-edit.component";
 import {GameDetailsComponent} from "./game/game-details/game-details.component";
-import {CompanyAddGameComponent} from './company/company-add-game/company-add-game.component';
 import {CharacterComponent} from "./character/character.component";
 import {CharacterListComponent} from "./character/character-list/character-list.component";
 import {CharacterEditComponent} from "./character/character-edit/character-edit.component";
@@ -20,8 +19,7 @@ const appRoutes: Routes = [
       {path: '', component: CompanyListComponent},
       {path: 'create', component: CompanyEditComponent},
       {path: ':id', component: CompanyDetailsComponent},
-      {path: ':id/edit', component: CompanyEditComponent},
-      {path: ':id/addGame', component: CompanyAddGameComponent}
+      {path: ':id/edit', component: CompanyEditComponent}
     ]},
   {
     path: 'games', component: GameComponent, children: [

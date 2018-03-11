@@ -4,6 +4,7 @@ import {CompanyService} from '../../services/company.service';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {GameService} from "../../services/game.service";
 import {Game} from "../../models/game.model";
+import {DataStorageService} from "../../shared/data-storage.service";
 
 @Component({
   selector: 'app-company-details',
@@ -14,12 +15,13 @@ export class CompanyDetailsComponent implements OnInit {
   company: Company;
   id: string;
 
-  constructor(private companyService: CompanyService, private gameService: GameService, private route: ActivatedRoute, private router: Router){}
+  constructor(private companyService: CompanyService, private gameService: GameService, private dataService : DataStorageService, private route: ActivatedRoute, private router: Router){}
 
   ngOnInit() {
     this.route.params
       .subscribe((params: Params) => {
         this.id = params['id'];
+        this.dataService.getGames();
         this.companyService.getCompany(this.id).then((company: Company) => {
           this.company = company;
         })
@@ -27,14 +29,9 @@ export class CompanyDetailsComponent implements OnInit {
       });
   }
 
-  getCompany() {
-    return this.company;
+  getOwnedGame() : Game{
+    return this.gameService.getGame(this.company.games)
   }
-
-  getOwnedGame(): Game {
-    return this.gameService.getGame(this.company.games);
-  }
-
 
 
   onEdit() {

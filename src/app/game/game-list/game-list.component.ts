@@ -3,6 +3,7 @@ import {Game} from "../../models/game.model";
 import {Subscription} from "rxjs/Subscription";
 import {GameService} from "../../services/game.service";
 import {ActivatedRoute, Router} from "@angular/router";
+import {DataStorageService} from "../../shared/data-storage.service";
 
 @Component({
   selector: 'app-game-list',
@@ -15,15 +16,17 @@ export class GameListComponent implements OnInit {
 
 
   constructor(private gameService: GameService, private router: Router,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute, private dataService : DataStorageService) { }
 
   ngOnInit() {
-    this.gameService.getGames()
-      .then((games) => this.games = games)
-      .catch((error => console.log(error)));
-    this.subscription = this.gameService.gameChanged.subscribe((games: Game[]) => {
+    this.dataService.getGames();
+    this.subscription = this.gameService.gamesChanged.subscribe((games: Game[]) => {
       this.games = games
     });
+  }
+
+  getGames() {
+    return this.games;
   }
 
   onAddGame() {

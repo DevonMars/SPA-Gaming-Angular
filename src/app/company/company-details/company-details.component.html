@@ -3,7 +3,7 @@
 <p>{{company?.games}}</p>
 
 
-<a [routerLink]="['/games', getOwnedGame().id]">{{ getOwnedGame().title}}</a>
+<p>Theater: <a [routerLink]="['/games', getOwnedGame()._id]">{{ getOwnedGame().title }}</a></p>
 
 
 <button class="btn btn-primary" (click)="onEdit()">Alter Details</button>

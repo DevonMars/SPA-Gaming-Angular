@@ -3,7 +3,7 @@
   <div class="col-xs-12">
     <h3>Games</h3>
     <app-game-item
-      *ngFor="let gameZ of games; let i = index"
+      *ngFor="let gameZ of getGames(); let i = index"
       [game]="gameZ"
       [index]="i"></app-game-item>
   </div>

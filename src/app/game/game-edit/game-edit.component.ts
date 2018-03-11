@@ -3,6 +3,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {GameService} from "../../services/game.service";
 import {Game} from "../../models/game.model";
+import {DataStorageService} from "../../shared/data-storage.service";
 
 @Component({
   selector: 'app-game-edit',
@@ -13,25 +14,32 @@ export class GameEditComponent implements OnInit {
   private editingMode = false;
   id: string;
   gameForm: FormGroup;
+  game: Game;
 
   constructor(private route: ActivatedRoute, private router: Router,
-              private gameService: GameService) { }
+              private gameService: GameService, private dataService: DataStorageService) { }
 
   ngOnInit() {
     this.route.params.subscribe((params: Params) => {
       this.id = params['id'];
+      this.game = this.gameService.getGame(this.id);
       this.editingMode = params['id'] != null;
+
+      this.gameService.gamesChanged.subscribe((game:Game[]) => {
+        this.game = this.gameService.getGame(this.id);
+        this.startForm();
+      })
       this.startForm();
     });
   }
 
   onSubmit() {
-    const game = this.gameForm.value;
-    game._id = this.id;
+    // const game = this.gameForm.value;
+    // game._id = this.id;
     if (this.editingMode) {
-      this.gameService.updateGame(this.gameForm.value);
+      this.dataService.updateGame(this.gameForm.value);
     } else {
-      this.gameService.addGame(this.gameForm.value);
+      this.dataService.addGame(this.gameForm.value);
     }
     this.onCancel();
   }
@@ -54,11 +62,11 @@ export class GameEditComponent implements OnInit {
     });
 
     if (this.editingMode) {
-      this.gameService.getGame(this.id).then((newGame: Game) => {
-        gameTitle = newGame.title;
-        gameDeveloper = newGame.developer;
-        gameDescrip = newGame.description;
-        gameEngine = newGame.engine;
+      const game = this.gameService.getGame(this.id);
+        gameTitle = game.title;
+        gameDeveloper = game.developer;
+        gameDescrip = game.description;
+        gameEngine = game.engine;
 
         this.gameForm.patchValue({
           title: gameTitle,
@@ -66,8 +74,7 @@ export class GameEditComponent implements OnInit {
           description: gameDescrip,
           engine: gameEngine
         });
-      });
-    }
+      };
   }
 
 }

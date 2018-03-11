@@ -6,6 +6,7 @@ import {Company} from '../../models/company.model';
 import {Subscription} from "rxjs/Subscription";
 import {GameService} from "../../services/game.service";
 import {Game} from "../../models/game.model";
+import {DataStorageService} from "../../shared/data-storage.service";
 
 @Component({
   selector: 'app-company-edit',
@@ -21,20 +22,23 @@ export class CompanyEditComponent implements OnInit {
 
 
   constructor(private route: ActivatedRoute, private router: Router,
-              private companyService: CompanyService, private gameService: GameService) { }
+              private companyService: CompanyService, private gameService: GameService, private dataService: DataStorageService) { }
 
   ngOnInit() {
     this.route.params.subscribe((params: Params) => {
       this.id = params['id'];
+      this.dataService.getGames();
       this.editingMode = params['id'] != null;
-      this.gameService.getGames().then((gameStorage) => {
-        this.gameStorage = gameStorage
-      });
+      this.gameService.gamesChanged
+        .subscribe((games: Game[]) => {
+          this.gameStorage = games;
+          this.startForm();
+        });
+
       this.startForm();
     });
   }
 
-  gameSelected: any;
 
   onGameSelected(event){
     console.log(event); //option value will be sent as event
