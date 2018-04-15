@@ -3,6 +3,7 @@ import {Company} from '../../models/company.model';
 import {Subscription} from 'rxjs/Subscription';
 import {CompanyService} from '../../services/company.service';
 import {ActivatedRoute, Router} from '@angular/router';
+import {DataStorageService} from "../../shared/data-storage.service";
 
 @Component({
   selector: 'app-company-list',
@@ -15,15 +16,17 @@ export class CompanyListComponent implements OnInit {
 
 
   constructor(private companyService: CompanyService, private router: Router,
-              private route: ActivatedRoute) { }
+              private dataService : DataStorageService, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.companyService.getCompanies()
-      .then((companies) => this.companies = companies)
-      .catch((error => console.log(error)));
-    this.subscription = this.companyService.companyChanged.subscribe((companies: Company[]) => {
+    this.dataService.getCompanies();
+    this.subscription = this.companyService.companiesChanged.subscribe((companies: Company[]) => {
       this.companies = companies
     });
+  }
+
+  getCompanies() {
+    return this.companies;
   }
 
   onAddCompany() {

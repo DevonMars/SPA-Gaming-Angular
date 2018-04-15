@@ -9,8 +9,7 @@ export class GameService {
   gameChanged = new Subject<Game>();
   private games: Game[] = [];
 
-  getGames() {
-    return this.games.slice();
+  constructor() {
   }
 
   getGame(id: string) {

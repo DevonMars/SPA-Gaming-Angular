@@ -14,12 +14,12 @@ import {CharacterEditComponent} from "./character/character-edit/character-edit.
 import {CharacterDetailsComponent} from "./character/character-details/character-details.component";
 
 const appRoutes: Routes = [
-  {path: '', redirectTo: '/companies', pathMatch: 'full'},
+  {path: '', redirectTo: '/games', pathMatch: 'full'},
   {path: 'companies', component: CompanyComponent, children: [
       {path: '', component: CompanyListComponent},
       {path: 'create', component: CompanyEditComponent},
       {path: ':id', component: CompanyDetailsComponent},
-      {path: ':id/edit', component: CompanyEditComponent}
+      {path: ':id/edit', component: CompanyEditComponent},
     ]},
   {
     path: 'games', component: GameComponent, children: [

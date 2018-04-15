@@ -66,11 +66,14 @@
       <div class="row">
         <div class="col-xs-12">
           <div class="form-group">
-            <label for="games">Games</label>
+            <label for="games">Game Title</label>
             <select id="games" formControlName="games" (change)="onGameSelected($event)">
               <option *ngFor='let game of getGames()' [value]="game._id"
               (select)="isEqualGame(game._id)">{{game.title}}</option>
             </select>
+            <div class="col-xs-12">
+              <button type="button" class="btn btn-success" (click)="onGames()">addGame</button>
+            </div>
           </div>
         </div>
       </div>

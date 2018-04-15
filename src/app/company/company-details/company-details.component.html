@@ -2,12 +2,23 @@
 <p>{{company?.founder}}</p>
 <p>{{company?.games}}</p>
 
+<a *ngFor="let game of getCompany()?.games" [routerLink]="['/games', game._id]">
+    <div class="card-group">
+      <div class="card">
+        <img class="card-img-top" src="../../../../assets/images/Game.jpg" alt="Card image cap">
+        <div class="card-block">
+          <h4 class="card-title">{{ getMovieOfScreening(company?.games).title}}</h4>
+          <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem magni quas ex numquam, maxime minus quam molestias corporis quod, ea minima accusamus.</p>
+        </div>
+      </div>
+    </div>
+</a>
 
-<p>Theater: <a [routerLink]="['/games', getOwnedGame()._id]">{{ getOwnedGame().title }}</a></p>
+<div>
+  <button class="btn btn-primary" (click)="onEdit()">Alter Details</button>
+  <button class="btn btn-danger" (click)="onDelete()">Delete Company</button>
+  <button class="btn btn-primary" (click)="onAddGame()">Add Game to Company</button>
+</div>
 
-
-<button class="btn btn-primary" (click)="onEdit()">Alter Details</button>
-<button class="btn btn-danger" (click)="onDelete()">Delete Company</button>
-<button class="btn btn-primary" (click)="onAddGame()">Add Game to Company</button>
 
 

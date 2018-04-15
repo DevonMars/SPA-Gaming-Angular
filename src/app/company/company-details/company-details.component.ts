@@ -12,7 +12,7 @@ import {DataStorageService} from "../../shared/data-storage.service";
   styleUrls: ['./company-details.component.css']
 })
 export class CompanyDetailsComponent implements OnInit {
-  company: Company;
+  private company: Company;
   id: string;
 
   constructor(private companyService: CompanyService, private gameService: GameService, private dataService : DataStorageService, private route: ActivatedRoute, private router: Router){}
@@ -20,26 +20,32 @@ export class CompanyDetailsComponent implements OnInit {
   ngOnInit() {
     this.route.params
       .subscribe((params: Params) => {
-        this.id = params['id'];
         this.dataService.getGames();
-        this.companyService.getCompany(this.id).then((company: Company) => {
-          this.company = company;
-        })
-        console.log(this.id);
+        this.dataService.getCompanies();
+        this.id = params['id'];
+        this.companyService.companiesChanged.subscribe((companies: Company[]) => {
+          this.company = this.companyService.getCompany(this.id)
+        });
       });
   }
 
-  getOwnedGame() : Game{
-    return this.gameService.getGame(this.company.games)
+  getCompany() {
+    return this.company
   }
 
+  getMovieOfScreening(id: string) {
+    var game = this.gameService.getGame(id);
+    console.log(game)
+    return game;
+
+  }
 
   onEdit() {
     this.router.navigate(['edit'], {relativeTo: this.route});
   }
 
   onDelete() {
-    this.companyService.deleteCompany(this.company);
+    this.dataService.deleteCompany(this.id);
     this.router.navigate(['companies']);
   }
 

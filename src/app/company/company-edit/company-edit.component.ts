@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormArray, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {CompanyService} from '../../services/company.service';
 import {Company} from '../../models/company.model';
@@ -59,9 +59,9 @@ export class CompanyEditComponent implements OnInit {
       const company = this.companyForm.value;
       company._id = this.id;
       if (this.editingMode) {
-        this.companyService.updateCompany(this.companyForm.value);
+        this.dataService.updateCompany(this.companyForm.value);
       } else {
-        this.companyService.addCompany(this.companyForm.value);
+        this.dataService.addCompany(this.companyForm.value);
       }
       console.log(this.companyForm.value);
       this.onCancel();
@@ -70,6 +70,14 @@ export class CompanyEditComponent implements OnInit {
     onCancel() {
       this.router.navigate(['../../'], {relativeTo: this.route});
     }
+
+  onGames() {
+    (<FormArray>this.companyForm.get('extra_games')).push(
+      new FormGroup({
+        'title': new FormControl(null, Validators.required)
+      })
+    );
+  }
 
     private startForm() {
         let companyName = '';
@@ -89,12 +97,12 @@ export class CompanyEditComponent implements OnInit {
       });
 
       if (this.editingMode) {
-        this.companyService.getCompany(this.id).then((newCompany: Company) => {
-          companyName = newCompany.name;
-          companyDescrip = newCompany.description;
-          companyFounder = newCompany.founder;
-          companyCountry = newCompany.country;
-          companyTotal = newCompany.total_employees;
+        const company = this.companyService.getCompany(this.id);
+          companyName = company.name;
+          companyDescrip = company.description;
+          companyFounder = company.founder;
+          companyCountry = company.country;
+          companyTotal = company.total_employees;
 
           this.companyForm.patchValue({
             name: companyName,
@@ -103,7 +111,7 @@ export class CompanyEditComponent implements OnInit {
             country: companyCountry,
             total_employees: companyTotal
           });
-        });
+
       }
     }
 }
