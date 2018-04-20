@@ -1,24 +1,49 @@
-<p>{{company?.name}}</p>
-<p>{{company?.founder}}</p>
-<p>{{company?.games}}</p>
-
-<a *ngFor="let game of getCompany()?.games" [routerLink]="['/games', game._id]">
+<div class="container">
+  <div class="row">
+    <div class="col-lg-6">
+      <img class="img-fluid" src="../../../../assets/images/GameCompanyBig.jpg" alt="Card image cap">
+    </div>
+    <div class="col-lg-6" >
+      <h2>{{company?.name}}</h2>
+      <table class="table table-bordered">
+        <tbody>
+        <tr>
+          <th>Founder</th>
+          <td>{{ company?.founder }}</td>
+        </tr>
+        <tr>
+          <th>Country</th>
+          <td>{{ company?.country }}</td>
+        </tr>
+        </tbody>
+      </table>
+      <p>{{company?.description}}</p>
+    </div>
+  </div>
+  <div>
+    <H2>OUR GAMES</H2>
+  </div>
+  <div *ngFor="let game of getCompany()?.games">
     <div class="card-group">
       <div class="card">
         <img class="card-img-top" src="../../../../assets/images/Game.jpg" alt="Card image cap">
         <div class="card-block">
-          <h4 class="card-title">{{ getMovieOfScreening(company?.games).title}}</h4>
-          <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem magni quas ex numquam, maxime minus quam molestias corporis quod, ea minima accusamus.</p>
+          <h4 class="card-title">{{ getCompanyGameCollection(company?.games).title}}</h4>
+          <p class="card-text">{{getCompanyGameCollection(company?.games).description}}</p>
+          <div class="pull-center">
+            <a [routerLink]="['/games', game]">
+              <button class="btn btn-primary">More Info</button>
+            </a>
+          </div>
         </div>
       </div>
     </div>
-</a>
+  </div>
 
-<div>
-  <button class="btn btn-primary" (click)="onEdit()">Alter Details</button>
-  <button class="btn btn-danger" (click)="onDelete()">Delete Company</button>
-  <button class="btn btn-primary" (click)="onAddGame()">Add Game to Company</button>
+  <div>
+    <button class="btn btn-primary" (click)="onEdit()">Alter Details</button>
+    <button class="btn btn-danger" (click)="onDelete()">Delete Company</button>
+    <button class="btn btn-primary" (click)="onAddGame()">Add Game to Company</button>
+  </div>
 </div>
-
-
 

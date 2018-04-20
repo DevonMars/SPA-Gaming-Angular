@@ -103,13 +103,15 @@ export class CompanyEditComponent implements OnInit {
           companyFounder = company.founder;
           companyCountry = company.country;
           companyTotal = company.total_employees;
+          companyGame = company.games;
 
           this.companyForm.patchValue({
             name: companyName,
             description: companyDescrip,
             founder: companyFounder,
             country: companyCountry,
-            total_employees: companyTotal
+            total_employees: companyTotal,
+            games: companyGame
           });
 
       }

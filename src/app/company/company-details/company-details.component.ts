@@ -33,20 +33,13 @@ export class CompanyDetailsComponent implements OnInit {
     return this.company
   }
 
-  getMovieOfScreening(id: string) {
+  getCompanyGameCollection(id: string) {
     var game = this.gameService.getGame(id);
-    console.log(game)
     return game;
-
   }
 
   onEdit() {
     this.router.navigate(['edit'], {relativeTo: this.route});
-  }
-
-  onDelete() {
-    this.dataService.deleteCompany(this.id);
-    this.router.navigate(['companies']);
   }
 
   onAddGame(){

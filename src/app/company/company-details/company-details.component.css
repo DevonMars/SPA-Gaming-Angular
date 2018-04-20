@@ -12,3 +12,8 @@
 .card-title{
   text-align: center;
 }
+
+
+.img-fluid {
+  max-width: 100%;
+}

@@ -19,9 +19,6 @@ export class CompanyService {
   constructor() {
   }
 
-  getCompanies() {
-    return this.companies.slice();
-  }
 
   getCompany(id: string) {
     const index = this.companies.findIndex(x => x._id == id);

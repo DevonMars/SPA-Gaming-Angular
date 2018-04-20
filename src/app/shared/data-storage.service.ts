@@ -13,7 +13,7 @@ export class DataStorageService {
 
   private headers = new Headers({'Content-Type': 'application/json'});
   private GamingserverUrl = environment.serverUrl + 'games';
-  private CompanyServerUrl = environment.serverUrl + 'companies';
+  private CompanyServerUrl = environment.serverUrl + 'companies/';
 
 
   constructor(private http: Http,
@@ -55,40 +55,7 @@ export class DataStorageService {
       );
   }
 
-  getGamebyId(id: string) {
-    this.http.get(this.GamingserverUrl + '/' + id)
-      .map(
-        (response) => {
-          const game: Game = response.json();
-
-          return game;
-        }
-      )
-      .subscribe(
-        (game: Game) => {
-          this.gameService.gameChanged.next(game);
-        }
-      )
-  }
-
-  getCompany(id: string) {
-    this.http.get(this.CompanyServerUrl + '/' + id)
-      .map(
-        (response) => {
-          const company: Company = response.json();
-
-          return company;
-        }
-      )
-      .subscribe(
-        (company: Company) => {
-          this.companyService.companyChanged.next(company);
-        }
-      )
-  }
-
   //POST//
-
   addGame(game: Game) {
     this.http.post(this.GamingserverUrl, game)
       .map(
@@ -134,7 +101,7 @@ export class DataStorageService {
   }
 
   updateCompany(company: Company) {
-    this.http.put(this.companyService + company._id, company)
+    this.http.put(this.CompanyServerUrl + company._id, company)
       .map(
         (response) => {
           return response.json();
