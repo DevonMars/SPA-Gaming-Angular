@@ -101,7 +101,7 @@ export class DataStorageService {
   }
 
   updateCompany(company: Company) {
-    this.http.put(this.CompanyServerUrl + company._id, company)
+    this.http.put(this.CompanyServerUrl + company._id + "/edit", company)
       .map(
         (response) => {
           return response.json();

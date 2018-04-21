@@ -81,7 +81,8 @@ export class CompanyEditComponent implements OnInit {
 
     private startForm() {
         let companyName = '';
-        let companyDescrip = '';
+        let companyDescripLG = '';
+        let companyDescripSM = '';
         let companyFounder = '';
         let companyCountry = '';
         let companyTotal = 1;
@@ -89,7 +90,8 @@ export class CompanyEditComponent implements OnInit {
 
       this.companyForm = new FormGroup({
         'name': new FormControl(companyName, Validators.required),
-        'description': new FormControl(companyDescrip, Validators.required),
+        'largeDescription': new FormControl(companyDescripLG, Validators.required),
+        'smallDescription': new FormControl(companyDescripLG, Validators.required),
         'founder': new FormControl(companyFounder, Validators.required),
         'country': new FormControl(companyCountry, Validators.required),
         'total_employees': new FormControl(companyTotal, Validators.required),
@@ -99,7 +101,8 @@ export class CompanyEditComponent implements OnInit {
       if (this.editingMode) {
         const company = this.companyService.getCompany(this.id);
           companyName = company.name;
-          companyDescrip = company.description;
+          companyDescripLG = company.largeDescription;
+          companyDescripSM = company.smallDescription;
           companyFounder = company.founder;
           companyCountry = company.country;
           companyTotal = company.total_employees;
@@ -107,7 +110,8 @@ export class CompanyEditComponent implements OnInit {
 
           this.companyForm.patchValue({
             name: companyName,
-            description: companyDescrip,
+            largeDescription: companyDescripLG,
+            smallDescription: companyDescripSM,
             founder: companyFounder,
             country: companyCountry,
             total_employees: companyTotal,

@@ -1,18 +1,17 @@
 <div class="card-group">
   <div class="card">
-    <div>
-      <button class="btn btn-primary" (click)="onEdit()">Edit</button>
-      <button class="btn btn-danger" (click)="onDelete()">Delete</button>
-    </div>
-    <img class="card-img-top" src="../../../../assets/images/GameCompany.jpg" alt="Card image cap">
+    <img class="img-fluid" src="../../../../assets/images/GameCompany.jpg" alt="Card image cap">
     <div class="card-block">
-      <h4 class="card-title">{{company?.name}}</h4>
-      <p class="card-text">{{company?.description}}</p>
+      <h2 class="card-title">{{company?.name}}</h2>
+      <p class="card-text">{{company?.smallDescription}}</p>
     </div>
     <div class="card-footer">
       <a [routerLink]="company._id" routerLinkActive="active">
         <button class="btn btn-primary">More Info</button>
       </a>
+      <button class="btn btn-danger" style="float: right" (click)="onDelete()">Delete</button>
+    </div>
+    <div class="class-footer2" align="right">
     </div>
   </div>
 </div>

@@ -1,10 +1,14 @@
 <div class="container">
+  <hr>
+  <h1 align="center">{{company?.name}}</h1>
+  <hr>
   <div class="row">
     <div class="col-lg-6">
-      <img class="img-fluid" src="../../../../assets/images/GameCompanyBig.jpg" alt="Card image cap">
+    <img class="img-fluid" src="../../../../assets/images/GameCompanyBig.jpg" alt="Card image cap">
     </div>
     <div class="col-lg-6" >
-      <h2>{{company?.name}}</h2>
+      <!--<h2 class="name">{{company?.name}}</h2>-->
+      <!--<hr>-->
       <table class="table table-bordered">
         <tbody>
         <tr>
@@ -15,14 +19,20 @@
           <th>Country</th>
           <td>{{ company?.country }}</td>
         </tr>
+        <tr>
+          <th>Country</th>
+          <td>{{ company?.total_employees }}</td>
+        </tr>
         </tbody>
       </table>
-      <p>{{company?.description}}</p>
+      <p>{{company?.largeDescription}}</p>
     </div>
   </div>
+  <hr>
   <div>
-    <H2>OUR GAMES</H2>
+    <h2 align="center">OUR GAMES</h2>
   </div>
+  <hr>
   <div *ngFor="let game of getCompany()?.games">
     <div class="card-group">
       <div class="card">
