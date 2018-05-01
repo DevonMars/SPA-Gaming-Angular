@@ -26,6 +26,8 @@ import { CharacterDetailsComponent } from './character/character-details/charact
 import { CharacterEditComponent } from './character/character-edit/character-edit.component';
 import { CharacterItemComponent } from './character/character-list/character-item/character-item.component';
 import {DataStorageService} from "./shared/data-storage.service";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {MatButtonModule, MatCheckboxModule, MatSelectModule} from "@angular/material";
 
 @NgModule({
   declarations: [
@@ -53,7 +55,11 @@ import {DataStorageService} from "./shared/data-storage.service";
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    SelectModule
+    SelectModule,
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatCheckboxModule,
+    MatSelectModule
   ],
   providers: [CompanyService, GameService, CharacterService, DataStorageService],
   bootstrap: [AppComponent]

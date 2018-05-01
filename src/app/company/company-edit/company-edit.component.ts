@@ -87,6 +87,7 @@ export class CompanyEditComponent implements OnInit {
         let companyCountry = '';
         let companyTotal = 1;
         let companyGame = '';
+        let toppings= '';
 
       this.companyForm = new FormGroup({
         'name': new FormControl(companyName, Validators.required),
@@ -95,7 +96,8 @@ export class CompanyEditComponent implements OnInit {
         'founder': new FormControl(companyFounder, Validators.required),
         'country': new FormControl(companyCountry, Validators.required),
         'total_employees': new FormControl(companyTotal, Validators.required),
-        'games' : new FormControl(companyGame)
+        'games' : new FormControl(companyGame),
+        'toppings' : new FormControl(toppings)
       });
 
       if (this.editingMode) {
@@ -107,6 +109,7 @@ export class CompanyEditComponent implements OnInit {
           companyCountry = company.country;
           companyTotal = company.total_employees;
           companyGame = company.games;
+          toppings = company.games;
 
           this.companyForm.patchValue({
             name: companyName,
@@ -115,7 +118,8 @@ export class CompanyEditComponent implements OnInit {
             founder: companyFounder,
             country: companyCountry,
             total_employees: companyTotal,
-            games: companyGame
+            games: companyGame,
+            toppings: toppings
           });
 
       }
